@@ -32,12 +32,15 @@ a = io.imread(fname)
 a = a[::speed_up,::speed_up] # for speed while developing
 print 'Running', fname
 tic()
-out = np.real(rayleighsommerfeld(a, z, lamb=0.5))
+out = rayleighsommerfeld(a, z, lamb=0.5)
 print 'Full:'
 toc()
 
 if True:
-	os.mkdir('recon')
+	try:
+		os.mkdir('recon')
+	except OSError:
+		pass
 	for zi, zp in enumerate(z):
 		print 'Printing image', zi
 		plt.clf()
